@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",
+    "dev_server": "nodemon -r dotenv/config server/server.js",
     "start": "webpack -d --watch & live-server --port=3098 --watch=dist --open=dist",
     "start-oh": "webpack -d --watch"
   },
@@ -32,6 +33,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "dotenv": "^8.0.0",
     "live-server": "^1.2.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.0",
