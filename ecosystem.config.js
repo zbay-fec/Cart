@@ -9,7 +9,7 @@ module.exports = {
       host: 'ec2-52-14-18-193.us-east-2.compute.amazonaws.com',
       key: '~/.ssh/Zbay.pem',
       ref: 'origin/master',
-      repo: 'git@github.com:zbay-fec/Cart.git',
+      repo: 'https://github.com/zbay-fec/Cart.git',
       path: '/home/ubuntu/Zbay',
       'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
