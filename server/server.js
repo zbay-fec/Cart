@@ -9,6 +9,10 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use( bodyParser.json() )
 
+app.get('/', (req, res) => {
+  res.send('HEY!')
+})
+
 app.use(express.static(__dirname + '/../dist'));
 
 
