@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'Cart',
-    script: './dist/bundle.js'
+    script: './server/server.js'
   }],
   deploy: {
     production: {
