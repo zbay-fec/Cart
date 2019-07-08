@@ -8,6 +8,9 @@ const host = process.env.HOST || '0.0.0.0'
 // need for mongo to find env
 // require('dotenv').config()
 
+//comment for new push
+
+
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use( bodyParser.json() )
