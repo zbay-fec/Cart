@@ -17,7 +17,7 @@ export default class Cart extends React.Component {
   render() {
     return (
       <div>
-        Shopping Cart
+        Shopping Cart!!!! x2
       </div>
     );
   }
