@@ -32,6 +32,21 @@ app.get('/items', (req, res) => {
     .catch(err => res.status(500).json({message: 'There was an error with your request', error: err}));
 });
 
+//format for request must be like http://127.0.0.1:3099/item:?id=RAI357e
+app.get('/item:', (req, res) => {
+  console.log('req.query is: ', req.query)
+  Item.findById(req.query.id)
+    .exec()
+    .then(results => {
+      console.log('results are ', results)
+      res.status(200).send(results)
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Invalid ID', error: err});
+      console.log(err);
+    });
+});
+
 app.listen(port, function() {
   console.log(`Running on https://${host}:${port}!`);
 })
