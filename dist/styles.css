@@ -1,4 +1,7 @@
 .cartItem {
   border-style: solid;
   border-width: 1px;
+  margin-bottom: 15px;
+  height: 220px;
+  width: 65%;
 }

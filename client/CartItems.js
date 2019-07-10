@@ -7,9 +7,17 @@ const CartItems = props => {
       <br />
       {props.cart.map((item, ind) => {
         return (
-          <div class="cartItem" id={ind}>
+          <div class="cartItem" id={ind} >
+            Seller {item.seller}
+            <br />
             <img src={item.image1} alt="Item" width="100"/>
             {item.name}
+            <br />
+            {item.condition}
+            <br />
+            Qty {item.qty}
+            <br />
+            ${(item.price * item.qty).toFixed(2)}
           </div>
         );
       })}
