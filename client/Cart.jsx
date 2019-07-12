@@ -1,17 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import CartItems from "./CartItems.js"
+import CartItems from "./CartItems.jsx"
 
 export default class Cart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentItem: '',
+      currentItem: 'RAI357e',
       currentQty: 0,
       cartQty: 7,
       cartTotal: 0,
+      testItem: {},
       //sample cart data for testing
       cart: [
         {
@@ -92,9 +93,102 @@ export default class Cart extends React.Component {
             qty: 1
         }]
     }
+
+    this.getItem = this.getItem.bind(this)
+    this.addToCart = this.addToCart.bind(this)
+    this.totalCart = this.totalCart.bind(this)
+  }
+
+  //totals qty and prices of items in cart and updates them in state
+  totalCart() {
+    let total = 0
+    let qty = 0
+    for (let i=0; i<this.state.cart.length; i++) {
+      total += this.state.cart[i].price * this.state.cart[i].qty
+      qty += this.state.cart[i].qty
+    }
+
+    this.setState({
+      cartQty: qty,
+      cartTotal: total
+    })
+  }
+
+  addToCart(item) {
+    let tempCart = this.state.cart
+    let itemInd = undefined
+    
+    //search if item already exists in cart array and track index of if so
+    for (let i=0; i<tempCart.length; i++) {
+      if (item._id === tempCart[i]._id) {
+        itemInd = i
+      }
+    }
+
+    //add quantity if item already exists in cart, push item if it doesn't
+    if (itemInd) {
+      tempCart[itemInd].qty += item.qty
+    } else {
+      tempCart.push(item)
+    }
+
+    //set cart to new array and then run totalCart to update the totals
+    this.setState({ cart: tempCart })
+    this.totalCart()
+  }
+
+  getItem(id, cb) {
+    axios.get(`/item:?id=${id}`)
+    .then(data => {
+      cb(null, data.data) 
+      // this.setState({ testItem: data.data });
+    });
   }
 
   componentDidMount() {
+    //event listener for if an item is bought
+    window.addEventListener('itemBought', event => {
+      let getPromise = new Promise((resolve, reject) => {
+        this.getItem(event.detail.id, (error, result) => {
+          if (error) {
+            reject(error)
+          } else {
+            resolve(result)
+          }
+        })
+      })
+  
+      getPromise.then((item) => {
+        let itemBought = item
+        itemBought.qty = event.detail.qty
+        this.addToCart(itemBought)
+      })
+      let itemBought = this.getItem(event.detail.id)
+      itemBought.qty = event.detail.qty
+      this.addToCart(itemBought)
+    })
+    
+    //test event for testing functionality; will delete below once we've integrated services
+    let event = {detail: {
+      id: 'WMX262p',
+      qty: 4
+    }}
+
+    let getPromise = new Promise((resolve, reject) => {
+      this.getItem(event.detail.id, (error, result) => {
+        if (error) {
+          reject(error)
+        } else {
+          resolve(result)
+        }
+      })
+    })
+
+    getPromise.then((item) => {
+      let itemBought = item
+      itemBought.qty = event.detail.qty
+      this.addToCart(itemBought)
+    })
 
   }
 
@@ -104,6 +198,7 @@ export default class Cart extends React.Component {
         <CartItems
           cart={this.state.cart}
           cartQty={this.state.cartQty}
+          cartTotal={this.state.cartTotal}
         />
       </div>
     );

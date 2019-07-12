@@ -2,12 +2,12 @@ import React from "react";
 
 const CartItems = props => {
   return (
-    <div>
+    <div className="left-section">
       <h4>Shopping Cart ({props.cartQty} items)</h4>
       <br />
       {props.cart.map((item, ind) => {
         return (
-          <div class="cartItem" id={ind} >
+          <div className="cartItem" id={ind} >
             Seller {item.seller}
             <br />
             <img src={item.image1} alt="Item" width="100"/>
