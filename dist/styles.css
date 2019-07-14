@@ -10,12 +10,6 @@
   font-size: 1.75rem;
   font-weight: 200;
   width: 60%;
-  /* float: left; */
-  /* display: block; */
-  /* margin-block-start: 1.33em;
-  margin-block-end: 1.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px; */
   color: #333;
   font-family: "Helvetica Neue",Helvetica,Arial,Roboto,sans-serif;
 }
@@ -38,6 +32,9 @@
   padding: 1rem;
   background: #fff;
   border: 1px solid #ccc;
+  color: #333;
+  font-family: "Helvetica Neue",Helvetica,Arial,Roboto,sans-serif;
+  font-size: .875rem;
 }
 
 .checkout {
@@ -59,8 +56,8 @@ table {
   width: 100%;
   font-family: "Helvetica Neue",Helvetica,Arial,Roboto,sans-serif;
   font-size: .875rem;
-  border-spacing: 0;
-  border-collapse: collapse;
+  border-spacing: 0em .3rem;
+  /* border-collapse: collapse; */
 }
 
 .line-x {
@@ -85,15 +82,11 @@ table {
 
 tr {
   margin-top: .5rem;
-  border-spacing: 0;
-  border-collapse: collapse;
 }
 
 td {
   display: table-cell;
   vertical-align: inherit;
-  border-spacing: 0;
-  border-collapse: collapse;
 }
 
 .total-row {
