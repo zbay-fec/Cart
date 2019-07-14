@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import CartItems from "./CartItems.jsx"
+import CartTotal from "./CartTotal.jsx"
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class Cart extends React.Component {
     this.state = {
       currentItem: 'RAI357e',
       currentQty: 0,
-      cartQty: 7,
+      cartQty: 0,
       cartTotal: 0,
       testItem: {},
       //sample cart data for testing
@@ -108,6 +109,8 @@ export default class Cart extends React.Component {
       qty += this.state.cart[i].qty
     }
 
+    total = total.toFixed(2)
+
     this.setState({
       cartQty: qty,
       cartTotal: total
@@ -163,18 +166,15 @@ export default class Cart extends React.Component {
         itemBought.qty = event.detail.qty
         this.addToCart(itemBought)
       })
-      let itemBought = this.getItem(event.detail.id)
-      itemBought.qty = event.detail.qty
-      this.addToCart(itemBought)
     })
     
     //test event for testing functionality; will delete below once we've integrated services
     let event = {detail: {
-      id: 'WMX262p',
+      id: 'CKO986x',
       qty: 4
     }}
 
-    let getPromise = new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       this.getItem(event.detail.id, (error, result) => {
         if (error) {
           reject(error)
@@ -183,22 +183,25 @@ export default class Cart extends React.Component {
         }
       })
     })
-
-    getPromise.then((item) => {
+    .then((item) => {
       let itemBought = item
       itemBought.qty = event.detail.qty
       this.addToCart(itemBought)
     })
-
+    .catch(err => console.log('get error: ', err))
   }
 
   render() {
     return (
-      <div>
+      <div className="cart">
         <CartItems
           cart={this.state.cart}
           cartQty={this.state.cartQty}
           cartTotal={this.state.cartTotal}
+        />
+        <CartTotal
+          cartTotal={this.state.cartTotal}
+          cartQty={this.state.cartQty}
         />
       </div>
     );
