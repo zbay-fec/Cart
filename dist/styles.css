@@ -128,7 +128,7 @@ a:hover, button:hover {
 
 button {
   font-family: sans-serif;
-  font-size: 100%;
+  font-size: 90%;
   line-height: 1.15;
   margin: 0;
 }
@@ -145,6 +145,9 @@ button.faux-link {
   align-items: center;
   white-space: nowrap;
   display: -webkit-flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  padding-right: .5rem;
 }
 
 .cart-head {
@@ -153,7 +156,58 @@ button.faux-link {
   height: 24px;
 }
 
-.align-items-c {
-    -ms-flex-align: center;
-    align-items: center;
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.cart-bucket-item {
+  padding: 0 1rem 1rem 1rem;
+  position: relative;
+}
+
+.item-line {
+  border-top: 1px solid #ccc;
+}
+
+.list-content {
+  padding-top: 1rem;
+}
+
+.grid-group {
+  -ms-flex-align: start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin-right: -16px;
+  width: 100%;
+}
+
+.grid-cell {
+  box-sizing: border-box;
+  min-height: 1px;
+  padding-right: 16px;
+  flex: 0 0 25%;
+  max-width: 25%;
+  width: 25%;
+}
+
+.cart-image {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.image-display {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width:120px;
 }

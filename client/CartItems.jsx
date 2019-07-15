@@ -10,14 +10,14 @@ const CartItems = props => {
       {props.cart.map((item, ind) => {
         return (
           <div className="cartItem" id={ind}>
-            <div class="cart-head flex">
-              <h2 class="seller-ctr truncate">
-                <span class="font-weight-light">
+            <div className="cart-head flex">
+              <h2 className="seller-ctr truncate">
+                <span className="font-weight-light">
                   <span>
                     <span>Seller</span>
                   </span>
                 </span>
-                <span class="black-link">
+                <span className="black-link">
                   &nbsp;
                   <span>
                     <a href="" title={`Go to seller page: ${item.seller}`}>
@@ -27,11 +27,11 @@ const CartItems = props => {
                 </span>
               </h2>
               
-              <span class="flex align-items-c">
+              <span className="flex">
                 <span>
                   <button
                     type="button"
-                    class="faux-link"
+                    className="faux-link"
                   >
                     <span>
                       Pay only this seller
@@ -41,8 +41,27 @@ const CartItems = props => {
               </span>
             </div>
 
+
+            <div> 
+              <div className="cart-bucket-item">
+                <div className="item-line">
+                  <div className="list-content">
+                    <div className="grid-group">
+                      <div className="grid-cell">
+                        <div className="cart-image">
+                          <div className="image-display">
+                            <img src={item.image1} alt="Item" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <br />
-            <img src={item.image1} alt="Item" width="100" />
+            
             {item.name}
             <br />
             {item.condition}
