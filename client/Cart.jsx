@@ -13,7 +13,6 @@ export default class Cart extends React.Component {
       currentQty: 0,
       cartQty: 0,
       cartTotal: 0,
-      testItem: {},
       //sample cart data for testing
       cart: [
         {
@@ -108,7 +107,7 @@ export default class Cart extends React.Component {
       total += this.state.cart[i].price * this.state.cart[i].qty
       qty += this.state.cart[i].qty
     }
-    
+
     total = total.toFixed(2)
 
     this.setState({
@@ -141,7 +140,7 @@ export default class Cart extends React.Component {
   }
 
   getItem(id, cb) {
-    axios.get(`/item:?id=${id}`)
+    axios.get(`http://ec2-3-16-22-38.us-east-2.compute.amazonaws.com:3099/item:?id=${id}`)
     .then(data => {
       cb(null, data.data) 
       // this.setState({ testItem: data.data });
@@ -184,6 +183,7 @@ export default class Cart extends React.Component {
       })
     })
     .then((item) => {
+      console.log('item got is: ', item)
       let itemBought = item
       itemBought.qty = event.detail.qty
       this.addToCart(itemBought)

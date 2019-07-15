@@ -1,6 +1,7 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
-const {Item} = require('../database/db');
+const {Item} = require('../database/db')
 const path = require('path')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 3099;
@@ -14,6 +15,7 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use( bodyParser.json() )
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, '../dist')));
 

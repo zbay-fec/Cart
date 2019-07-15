@@ -47,12 +47,19 @@ const CartItems = props => {
                 <div className="item-line">
                   <div className="list-content">
                     <div className="grid-group">
-                      <div className="grid-cell">
+                      <div className="grid-cell-image">
                         <div className="cart-image">
                           <div className="image-display">
                             <img className="image" src={item.image1} alt="Item" />
                           </div>
                         </div>
+                      </div>
+                      <div className="grid-cell-name">
+                        <div className="">
+                          {item.name}
+                        </div>
+                      </div>
+                      <div className="grid-cell-price">
                       </div>
                     </div>
                   </div>
@@ -62,7 +69,7 @@ const CartItems = props => {
 
             <br />
             
-            {item.name}
+            
             <br />
             {item.condition}
             <br />
