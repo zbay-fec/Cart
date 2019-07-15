@@ -10,6 +10,10 @@ module.exports = {
   module : {
     rules : [
       {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test : /\.js?/,
         include : SRC_DIR,
         loader : 'babel-loader',
