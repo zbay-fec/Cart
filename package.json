@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev_server": "nodemon -r dotenv/config server/server.js",
-    "start": "webpack -d --watch & live-server --port=3098 --watch=dist --open=dist",
+    "start": "webpack -d --watch & live-server --port=3099 --watch=dist",
     "start-oh": "webpack -d --watch"
   },
   "repository": {

@@ -108,7 +108,7 @@ export default class Cart extends React.Component {
       total += this.state.cart[i].price * this.state.cart[i].qty
       qty += this.state.cart[i].qty
     }
-
+    
     total = total.toFixed(2)
 
     this.setState({
