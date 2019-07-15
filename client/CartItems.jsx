@@ -50,7 +50,7 @@ const CartItems = props => {
                       <div className="grid-cell">
                         <div className="cart-image">
                           <div className="image-display">
-                            <img src={item.image1} alt="Item" />
+                            <img className="image" src={item.image1} alt="Item" />
                           </div>
                         </div>
                       </div>
