@@ -2,15 +2,18 @@ import React from "react";
 
 const CartItems = props => {
   return (
-    <div>
-      <h4>Shopping Cart ({props.cartQty} items)</h4>
+    <div className="left-section">
+      <div className="title2">
+        <h4 className="title">Shopping Cart ({props.cartQty} items)</h4>
+      </div>
+
       <br />
       {props.cart.map((item, ind) => {
         return (
-          <div class="cartItem" id={ind} >
+          <div className="cartItem" id={ind}>
             Seller {item.seller}
             <br />
-            <img src={item.image1} alt="Item" width="100"/>
+            <img src={item.image1} alt="Item" width="100" />
             {item.name}
             <br />
             {item.condition}
