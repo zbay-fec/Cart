@@ -64,10 +64,7 @@ const CartItems = props => {
                           <div className="quantity">
                             <span>Qty</span>
                             <span>
-                              <select
-                                className="qty-dropdown"
-                                value={item.qty}
-                              >
+                              <select className="qty-dropdown" value={item.qty}>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -90,19 +87,39 @@ const CartItems = props => {
                           </div>
                           <div className="item-price">
                             ${(item.price * item.qty).toFixed(2)}
+                            <div className="shipping shipping-price">
+                              Free Shipping
+                            </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    <div className="item-footer">
+                      <div >
+                        <span>
+                          <button type="button" className="faux-link">
+                            <span>Save for later</span>
+                          </button>
+                        </span>
+                        <div className="line-y">|</div>
+                        <span>
+                          <button
+                            type="button"
+                            className="faux-link"
+                            data-test-id="cart-remove-item"
+                            data-marko='{"onclick":"handleClick s1-11-blade.addict-1447884778-removeBtn false"}'
+                          >
+                            <span>
+                              Remove
+                            </span>
+                          </button>
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <br />
-            <br />
-            <br />
-            Qty {item.qty}
-            <br />
           </div>
         );
       })}
