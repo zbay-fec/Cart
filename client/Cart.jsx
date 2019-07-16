@@ -182,7 +182,7 @@ export default class Cart extends React.Component {
   
       getPromise.then((item) => {
         item.qty = event.detail.qty
-        this.addToCart(itemBought)
+        this.addToCart(item)
       })
     })
     
