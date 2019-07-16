@@ -56,7 +56,7 @@ const CartItems = props => {
                           <a href="/">
                             <div 
                               className="name"
-                              onClick={props.goToItem(item._id)}
+                              onClick={(e) => props.goToItem(item._id, e)}
                             >
                               {item.name}
                             </div>

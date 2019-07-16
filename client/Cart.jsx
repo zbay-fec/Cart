@@ -99,7 +99,8 @@ export default class Cart extends React.Component {
     this.changeQty = this.changeQty.bind(this)
   }
 
-  goToItem(item_id) {
+  goToItem(item_id, event) {
+    event.preventDefault();
     window.dispatchEvent(new CustomEvent('productChanged', {
       detail: {
         id: item_id
