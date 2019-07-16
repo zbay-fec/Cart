@@ -183,7 +183,6 @@ export default class Cart extends React.Component {
       })
     })
     .then((item) => {
-      console.log('item got is: ', item)
       let itemBought = item
       itemBought.qty = event.detail.qty
       this.addToCart(itemBought)

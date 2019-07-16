@@ -3,7 +3,7 @@ import React from "react";
 const CartItems = props => {
   return (
     <div className="left-section">
-      <div >
+      <div>
         <h4 className="title">Shopping Cart ({props.cartQty} items)</h4>
       </div>
       <br />
@@ -26,23 +26,16 @@ const CartItems = props => {
                   </span>
                 </span>
               </h2>
-              
+
               <span className="flex">
                 <span>
-                  <button
-                    type="button"
-                    className="faux-link"
-                  >
-                    <span>
-                      Pay only this seller
-                    </span>
+                  <button type="button" className="faux-link">
+                    <span>Pay only this seller</span>
                   </button>
                 </span>
               </span>
             </div>
-
-
-            <div> 
+            <div>
               <div className="cart-bucket-item">
                 <div className="item-line">
                   <div className="list-content">
@@ -50,31 +43,66 @@ const CartItems = props => {
                       <div className="grid-cell-image">
                         <div className="cart-image">
                           <div className="image-display">
-                            <img className="image" src={item.image1} alt="Item" />
+                            <img
+                              className="image"
+                              src={item.image1}
+                              alt="Item"
+                            />
                           </div>
                         </div>
                       </div>
                       <div className="grid-cell-name">
-                        <div className="">
-                          {item.name}
+                        <div className="black-link">
+                          <a href="">
+                            <div className="name">{item.name}</div>
+                          </a>
                         </div>
+                        <div className="condition">{item.condition}</div>
                       </div>
                       <div className="grid-cell-price">
+                        <div className="grid-group2">
+                          <div className="quantity">
+                            <span>Qty</span>
+                            <span>
+                              <select
+                                className="qty-dropdown"
+                                value={item.qty}
+                              >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10+</option>
+                              </select>
+                            </span>
+                            <div className="shipping">
+                              Standard
+                              <br />
+                              Shipping
+                              <br />
+                              3-5 days
+                            </div>
+                          </div>
+                          <div className="item-price">
+                            ${(item.price * item.qty).toFixed(2)}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <br />
-            
-            
             <br />
-            {item.condition}
             <br />
             Qty {item.qty}
-            <br />${(item.price * item.qty).toFixed(2)}
+            <br />
           </div>
         );
       })}
