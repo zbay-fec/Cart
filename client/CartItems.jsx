@@ -53,8 +53,13 @@ const CartItems = props => {
                       </div>
                       <div className="grid-cell-name">
                         <div className="black-link">
-                          <a href="">
-                            <div className="name">{item.name}</div>
+                          <a href="/">
+                            <div 
+                              className="name"
+                              onClick={props.goToItem(item._id)}
+                            >
+                              {item.name}
+                            </div>
                           </a>
                         </div>
                         <div className="condition">{item.condition}</div>
@@ -106,8 +111,7 @@ const CartItems = props => {
                           <button
                             type="button"
                             className="faux-link"
-                            data-test-id="cart-remove-item"
-                            data-marko='{"onclick":"handleClick s1-11-blade.addict-1447884778-removeBtn false"}'
+                            onClick={() => props.changeQty(ind, 0)}
                           >
                             <span>
                               Remove

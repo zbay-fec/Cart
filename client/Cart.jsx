@@ -97,6 +97,28 @@ export default class Cart extends React.Component {
     this.getItem = this.getItem.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.totalCart = this.totalCart.bind(this)
+    this.goToItem = this.goToItem.bind(this)
+    this.changeQty = this.changeQty.bind(this)
+  }
+
+  goToItem(item_id) {
+    window.dispatchEvent(new CustomEvent('productChanged', {
+      detail: {
+        id: item_id
+      }
+    }));
+  }
+
+  changeQty(ind, newQty) {
+    let cartCopy = [...this.state.cart]
+    
+    if (newQty === 0) {
+      cartCopy.splice(ind,1)
+    } else {
+      cartCopy[ind].qty = newQty
+    }
+    
+    this.setState({cart: cartCopy}, () => {this.totalCart()})
   }
 
   //totals qty and prices of items in cart and updates them in state
@@ -197,6 +219,8 @@ export default class Cart extends React.Component {
           cart={this.state.cart}
           cartQty={this.state.cartQty}
           cartTotal={this.state.cartTotal}
+          goToItem={this.goToItem}
+          changeQty={this.changeQty}
         />
         <CartTotal
           cartTotal={this.state.cartTotal}
