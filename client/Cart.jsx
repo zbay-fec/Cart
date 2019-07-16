@@ -169,6 +169,7 @@ export default class Cart extends React.Component {
   componentDidMount() {
     //event listener for if an item is bought
     window.addEventListener('itemBought', event => {
+      console.log('event listener hit', event.detail.id)
       let getPromise = new Promise((resolve, reject) => {
         this.getItem(event.detail.id, (error, result) => {
           if (error) {
