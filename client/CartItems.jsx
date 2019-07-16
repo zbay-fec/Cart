@@ -69,7 +69,7 @@ const CartItems = props => {
                           <div className="quantity">
                             <span>Qty</span>
                             <span>
-                              <select className="qty-dropdown" value={item.qty}>
+                              <select className="qty-dropdown" value={item.qty} onChange={(e) => props.changeQty(ind, parseInt(e.target.value))}>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -79,7 +79,7 @@ const CartItems = props => {
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                                 <option value="9">9</option>
-                                <option value="10">10+</option>
+                                <option value="10">10</option>
                               </select>
                             </span>
                             <div className="shipping">

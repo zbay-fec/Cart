@@ -9,8 +9,6 @@ export default class Cart extends React.Component {
     super(props);
 
     this.state = {
-      currentItem: 'RAI357e',
-      currentQty: 0,
       cartQty: 0,
       cartTotal: 0,
       //sample cart data for testing
@@ -117,7 +115,7 @@ export default class Cart extends React.Component {
     } else {
       cartCopy[ind].qty = newQty
     }
-    
+
     this.setState({cart: cartCopy}, () => {this.totalCart()})
   }
 
@@ -139,26 +137,25 @@ export default class Cart extends React.Component {
   }
 
   addToCart(item) {
-    let tempCart = this.state.cart
+    let cartCopy = [...this.state.cart]
     let itemInd = undefined
     
     //search if item already exists in cart array and track index of if so
-    for (let i=0; i<tempCart.length; i++) {
-      if (item._id === tempCart[i]._id) {
+    for (let i=0; i<cartCopy.length; i++) {
+      if (item._id === cartCopy[i]._id) {
         itemInd = i
       }
     }
 
     //add quantity if item already exists in cart, push item if it doesn't
     if (itemInd) {
-      tempCart[itemInd].qty += item.qty
+      cartCopy[itemInd].qty += item.qty
     } else {
-      tempCart.push(item)
+      cartCopy.push(item)
     }
 
     //set cart to new array and then run totalCart to update the totals
-    this.setState({ cart: tempCart })
-    this.totalCart()
+    this.setState({cart: cartCopy}, () => {this.totalCart()})
   }
 
   getItem(id, cb) {
@@ -183,8 +180,7 @@ export default class Cart extends React.Component {
       })
   
       getPromise.then((item) => {
-        let itemBought = item
-        itemBought.qty = event.detail.qty
+        item.qty = event.detail.qty
         this.addToCart(itemBought)
       })
     })
@@ -205,9 +201,8 @@ export default class Cart extends React.Component {
       })
     })
     .then((item) => {
-      let itemBought = item
-      itemBought.qty = event.detail.qty
-      this.addToCart(itemBought)
+      item.qty = event.detail.qty
+      this.addToCart(item)
     })
     .catch(err => console.log('get error: ', err))
   }
@@ -221,6 +216,7 @@ export default class Cart extends React.Component {
           cartTotal={this.state.cartTotal}
           goToItem={this.goToItem}
           changeQty={this.changeQty}
+          logEvent={this.logEvent}
         />
         <CartTotal
           cartTotal={this.state.cartTotal}
