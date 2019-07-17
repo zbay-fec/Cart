@@ -1,6 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import axios from "axios";
+import React from "react"
+import ReactDOM from "react-dom"
+import axios from "axios"
+import FlexView from 'react-flexview'
 import CartItems from "./CartItems.jsx"
 import CartTotal from "./CartTotal.jsx"
 
@@ -211,20 +212,22 @@ export default class Cart extends React.Component {
 
   render() {
     return (
-      <div className="cart">
-        <CartItems
-          cart={this.state.cart}
-          cartQty={this.state.cartQty}
-          cartTotal={this.state.cartTotal}
-          goToItem={this.goToItem}
-          changeQty={this.changeQty}
-          logEvent={this.logEvent}
-        />
-        <CartTotal
-          cartTotal={this.state.cartTotal}
-          cartQty={this.state.cartQty}
-        />
-      </div>
+      <FlexView hAlignContent='center'>
+        <div className="cart">
+          <CartItems
+            cart={this.state.cart}
+            cartQty={this.state.cartQty}
+            cartTotal={this.state.cartTotal}
+            goToItem={this.goToItem}
+            changeQty={this.changeQty}
+            logEvent={this.logEvent}
+          />
+          <CartTotal
+            cartTotal={this.state.cartTotal}
+            cartQty={this.state.cartQty}
+          />
+        </div>
+      </FlexView>
     );
   }
 }
