@@ -213,7 +213,7 @@ export default class Cart extends React.Component {
   render() {
     return (
       <FlexView hAlignContent='center'>
-          <div className="cart">
+        <div className="cart">
           <CartItems
             cart={this.state.cart}
             cartQty={this.state.cartQty}
