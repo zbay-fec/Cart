@@ -107,6 +107,12 @@ export default class Cart extends React.Component {
         id: item_id
       }
     }));
+    window.dispatchEvent(new CustomEvent('showCart', {
+        detail: {
+          showCart: false
+        }
+      })
+    );
   }
 
   changeQty(ind, newQty) {
@@ -211,6 +217,9 @@ export default class Cart extends React.Component {
   }
 
   render() {
+    if (this.props.showCart === false) {
+      return <div />
+    }
     return (
       <FlexView hAlignContent='center'>
         <div className="cart">
