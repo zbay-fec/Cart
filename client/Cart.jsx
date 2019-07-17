@@ -1,6 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import axios from "axios";
+import React from "react"
+import ReactDOM from "react-dom"
+import axios from "axios"
+import FlexView from 'react-flexview'
 import CartItems from "./CartItems.jsx"
 import CartTotal from "./CartTotal.jsx"
 
@@ -9,11 +10,8 @@ export default class Cart extends React.Component {
     super(props);
 
     this.state = {
-      currentItem: 'RAI357e',
-      currentQty: 0,
       cartQty: 0,
       cartTotal: 0,
-      testItem: {},
       //sample cart data for testing
       cart: [
         {
@@ -98,6 +96,29 @@ export default class Cart extends React.Component {
     this.getItem = this.getItem.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.totalCart = this.totalCart.bind(this)
+    this.goToItem = this.goToItem.bind(this)
+    this.changeQty = this.changeQty.bind(this)
+  }
+
+  goToItem(item_id, event) {
+    event.preventDefault();
+    window.dispatchEvent(new CustomEvent('productChanged', {
+      detail: {
+        id: item_id
+      }
+    }));
+  }
+
+  changeQty(ind, newQty) {
+    let cartCopy = [...this.state.cart]
+    
+    if (newQty === 0) {
+      cartCopy.splice(ind,1)
+    } else {
+      cartCopy[ind].qty = newQty
+    }
+
+    this.setState({cart: cartCopy}, () => {this.totalCart()})
   }
 
   //totals qty and prices of items in cart and updates them in state
@@ -118,30 +139,29 @@ export default class Cart extends React.Component {
   }
 
   addToCart(item) {
-    let tempCart = this.state.cart
+    let cartCopy = [...this.state.cart]
     let itemInd = undefined
     
     //search if item already exists in cart array and track index of if so
-    for (let i=0; i<tempCart.length; i++) {
-      if (item._id === tempCart[i]._id) {
+    for (let i=0; i<cartCopy.length; i++) {
+      if (item._id === cartCopy[i]._id) {
         itemInd = i
       }
     }
 
     //add quantity if item already exists in cart, push item if it doesn't
     if (itemInd) {
-      tempCart[itemInd].qty += item.qty
+      cartCopy[itemInd].qty += item.qty
     } else {
-      tempCart.push(item)
+      cartCopy.push(item)
     }
 
     //set cart to new array and then run totalCart to update the totals
-    this.setState({ cart: tempCart })
-    this.totalCart()
+    this.setState({cart: cartCopy}, () => {this.totalCart()})
   }
 
   getItem(id, cb) {
-    axios.get(`/item:?id=${id}`)
+    axios.get(`http://ec2-3-16-22-38.us-east-2.compute.amazonaws.com:3099/item:?id=${id}`)
     .then(data => {
       cb(null, data.data) 
       // this.setState({ testItem: data.data });
@@ -151,6 +171,7 @@ export default class Cart extends React.Component {
   componentDidMount() {
     //event listener for if an item is bought
     window.addEventListener('itemBought', event => {
+      console.log('event listener hit', event.detail.id)
       let getPromise = new Promise((resolve, reject) => {
         this.getItem(event.detail.id, (error, result) => {
           if (error) {
@@ -162,9 +183,8 @@ export default class Cart extends React.Component {
       })
   
       getPromise.then((item) => {
-        let itemBought = item
-        itemBought.qty = event.detail.qty
-        this.addToCart(itemBought)
+        item.qty = event.detail.qty
+        this.addToCart(item)
       })
     })
     
@@ -184,26 +204,30 @@ export default class Cart extends React.Component {
       })
     })
     .then((item) => {
-      let itemBought = item
-      itemBought.qty = event.detail.qty
-      this.addToCart(itemBought)
+      item.qty = event.detail.qty
+      this.addToCart(item)
     })
     .catch(err => console.log('get error: ', err))
   }
 
   render() {
     return (
-      <div className="cart">
-        <CartItems
-          cart={this.state.cart}
-          cartQty={this.state.cartQty}
-          cartTotal={this.state.cartTotal}
-        />
-        <CartTotal
-          cartTotal={this.state.cartTotal}
-          cartQty={this.state.cartQty}
-        />
-      </div>
+      <FlexView hAlignContent='center'>
+        <div className="cart">
+          <CartItems
+            cart={this.state.cart}
+            cartQty={this.state.cartQty}
+            cartTotal={this.state.cartTotal}
+            goToItem={this.goToItem}
+            changeQty={this.changeQty}
+            logEvent={this.logEvent}
+          />
+          <CartTotal
+            cartTotal={this.state.cartTotal}
+            cartQty={this.state.cartQty}
+          />
+        </div>
+      </FlexView>
     );
   }
 }
