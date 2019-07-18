@@ -139,6 +139,7 @@ body {
 }
 
 .cart_button {
+  text-decoration: none;
   font-family: sans-serif;
   font-size: 90%;
   line-height: 1.15;

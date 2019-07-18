@@ -9,9 +9,9 @@ const CartItems = props => {
       <br />
       {props.cart.map((item, ind) => {
         return (
-          <div className="cartItem" id={ind}>
+          <div className="cartItem" id={ind} key={item._id}>
             <div className="cart-head cart_flex">
-              <h2 className="seller-ctr cart_truncate">
+              <h2 className="cart_truncate">
                 <span className="cart_font-weight-light">
                   <span>
                     <span>Seller</span>
