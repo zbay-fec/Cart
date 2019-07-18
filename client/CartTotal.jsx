@@ -2,34 +2,35 @@ import React from "react";
 
 const CartTotal = props => {
   return (
-    <div className="right-section">
+    <div className="cart_right-section">
       <div
         className="cartTotal"
       >
         <div>
           <button
-            className="checkout"
+            className="cart_button" 
+            id="cart_checkout"
             type="button"
           >
             Go to checkout
           </button>
         </div>
-        <table>
+        <table className="cart_table">
           <tbody>
-            <tr>
-              <td>
+            <tr className="cart_tr">
+              <td className="cart_td">
                 <span>
                   <span>Items ({props.cartQty})</span>
                 </span>
               </td>
-              <td className="val-col">
+              <td className="cart_td cart_val-col">
                 <span>
                   <span>${props.cartTotal}</span>
                 </span>
               </td>
             </tr>
-            <tr>
-              <td>
+            <tr className="cart_tr">
+              <td className="cart_td">
                 <span>
                   <span>Shipping</span>
                   <span>
@@ -48,25 +49,25 @@ const CartTotal = props => {
                   </span>
                 </span>
               </td>
-              <td className="val-col">
+              <td className="cart_td cart_val-col">
                 <span>
                   <span>Free</span>
                 </span>
               </td>
             </tr>
-            <tr>
-              <td className="line-x" >
+            <tr className="cart_tr">
+              <td className="cart_td cart_line-x" >
               </td>
-              <td className="line-x" >
+              <td className="cart_td cart_line-x" >
               </td>
             </tr>
-            <tr>
-              <td className="total-row">
+            <tr className="cart_tr">
+              <td className="cart_td cart_total-row">
                 <span>
                   <span>Total</span>
                 </span>
               </td>
-              <td className="val-col total-row">
+              <td className="cart_td cart_val-col cart_total-row">
                 <span>
                   <span>${props.cartTotal}</span>
                 </span>

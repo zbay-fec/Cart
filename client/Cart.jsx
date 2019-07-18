@@ -78,7 +78,7 @@ export default class Cart extends React.Component {
             "condition": "New",
             "category": "Knives",
             "url": "https://www.ebay.com/itm/2-PACK-COMBO-27-5-LARGE-BLOOD-RAYNE-NINJA-VAMPIRE-MACHETE-SWORD-BLADE-KNIFE/121040911053?hash=item1c2e99bacd:g:vXAAAOxyqUpQ6CNm",
-            qty: 5
+            qty: 15
         },
         {
             "_id": "VPX329p",
@@ -189,7 +189,7 @@ export default class Cart extends React.Component {
       })
   
       getPromise.then((item) => {
-        item.qty = event.detail.qty
+        item.qty = parseInt(event.detail.qty)
         this.addToCart(item)
       })
     })
