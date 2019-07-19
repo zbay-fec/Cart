@@ -78,17 +78,6 @@ export default class Cart extends React.Component {
             "condition": "New",
             "category": "Knives",
             "url": "https://www.ebay.com/itm/2-PACK-COMBO-27-5-LARGE-BLOOD-RAYNE-NINJA-VAMPIRE-MACHETE-SWORD-BLADE-KNIFE/121040911053?hash=item1c2e99bacd:g:vXAAAOxyqUpQ6CNm",
-            qty: 15
-        },
-        {
-            "_id": "VPX329p",
-            "name": "Dark Salvation Fixed Blade Survival Outdoor Karambit Knife with Harness",
-            "price": 10.99,
-            "image1": "https://zbay-fec-hratx-42.s3.us-east-2.amazonaws.com/knives/s-l1600.jpg",
-            "seller": "fsacase6",
-            "condition": "Used",
-            "category": "Knives",
-            "url": "https://www.ebay.com/itm/Dark-Salvation-Fixed-Blade-Survival-Outdoor-Karambit-Knife-with-Harness/183863912384?epid=1778697949&hash=item2acf24a7c0:g:wRQAAOSwkNZUb6zF",
             qty: 1
         }]
     }
@@ -142,6 +131,15 @@ export default class Cart extends React.Component {
       cartQty: qty,
       cartTotal: total
     })
+
+    window.dispatchEvent(
+      new CustomEvent('updateQty', {
+        detail: {
+          totalQty: qty
+        }
+      })
+    );
+
   }
 
   addToCart(item) {
@@ -226,7 +224,6 @@ export default class Cart extends React.Component {
             cart={this.state.cart}
             cartQty={this.state.cartQty}
             cartTotal={this.state.cartTotal}
-            goToItem={this.goToItem}
             changeQty={this.changeQty}
             logEvent={this.logEvent}
           />

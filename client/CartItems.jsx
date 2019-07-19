@@ -20,7 +20,7 @@ const CartItems = props => {
                 <span className="cart_black-link">
                   &nbsp;
                   <span>
-                    <a className="cart_a" href="" title={`Go to seller page: ${item.seller}`}>
+                    <a className="cart_a" href="" onClick={(e) => {e.preventDefault()}} title={`Go to seller page: ${item.seller}`}>
                       <span>{item.seller}</span>
                     </a>
                   </span>
