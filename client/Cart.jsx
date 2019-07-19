@@ -90,7 +90,7 @@ export default class Cart extends React.Component {
   }
 
   goToItem(item_id, event) {
-    event.preventDefault();
+    // event.preventDefault();
     window.dispatchEvent(new CustomEvent('productChanged', {
       detail: {
         id: item_id
