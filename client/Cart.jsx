@@ -90,7 +90,7 @@ export default class Cart extends React.Component {
   }
 
   goToItem(item_id, event) {
-    // event.preventDefault();
+    event.preventDefault();
     window.dispatchEvent(new CustomEvent('productChanged', {
       detail: {
         id: item_id
@@ -226,6 +226,7 @@ export default class Cart extends React.Component {
             cartTotal={this.state.cartTotal}
             changeQty={this.changeQty}
             logEvent={this.logEvent}
+            goToItem={this.goToItem}
           />
           <CartTotal
             cartTotal={this.state.cartTotal}
