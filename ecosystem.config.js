@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/Frontend',
       repo: 'https://github.com/zbay-fec/Cart.git',
       path: '/home/ubuntu/Zbay',
-      'post-deploy': 'npm install && git pull && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }

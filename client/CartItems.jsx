@@ -2,34 +2,34 @@ import React from "react";
 
 const CartItems = props => {
   return (
-    <div className="left-section">
+    <div className="cart_left-section">
       <div>
-        <h4 className="title">Shopping Cart ({props.cartQty} items)</h4>
+        <h4 className="cart_title">Shopping Cart ({props.cartQty} items)</h4>
       </div>
       <br />
       {props.cart.map((item, ind) => {
         return (
-          <div className="cartItem" id={ind}>
-            <div className="cart-head flex">
-              <h2 className="seller-ctr truncate">
-                <span className="font-weight-light">
+          <div className="cartItem" id={ind} key={item._id}>
+            <div className="cart-head cart_flex">
+              <h2 className="cart_truncate">
+                <span className="cart_font-weight-light">
                   <span>
                     <span>Seller</span>
                   </span>
                 </span>
-                <span className="black-link">
+                <span className="cart_black-link">
                   &nbsp;
                   <span>
-                    <a href="" title={`Go to seller page: ${item.seller}`}>
+                    <a className="cart_a" href="" onClick={(e) => {e.preventDefault()}} title={`Go to seller page: ${item.seller}`}>
                       <span>{item.seller}</span>
                     </a>
                   </span>
                 </span>
               </h2>
 
-              <span className="flex">
+              <span className="cart_flex">
                 <span>
-                  <button type="button" className="faux-link">
+                  <button type="button" className="cart_button cart_faux-link">
                     <span>Pay only this seller</span>
                   </button>
                 </span>
@@ -37,39 +37,39 @@ const CartItems = props => {
             </div>
             <div>
               <div className="cart-bucket-item">
-                <div className="item-line">
-                  <div className="list-content">
-                    <div className="grid-group">
-                      <div className="grid-cell-image">
+                <div className="cart_item-line">
+                  <div className="cart_list-content">
+                    <div className="cart_grid-group">
+                      <div className="cart_grid-cell-image">
                         <div className="cart-image">
-                          <div className="image-display">
+                          <div className="cart_image-display">
                             <img
-                              className="image"
+                              className="cart_image"
                               src={item.image1}
                               alt="Item"
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="grid-cell-name">
-                        <div className="black-link">
-                          <a href="/">
+                      <div className="cart_grid-cell-name">
+                        <div className="cart_black-link">
+                          <a className="cart_a" href="/">
                             <div 
-                              className="name"
+                              className="cart_name"
                               onClick={(e) => props.goToItem(item._id, e)}
                             >
                               {item.name}
                             </div>
                           </a>
                         </div>
-                        <div className="condition">{item.condition}</div>
+                        <div className="cart_condition">{item.condition}</div>
                       </div>
-                      <div className="grid-cell-price">
-                        <div className="grid-group2">
-                          <div className="quantity">
+                      <div className="cart_grid-cell-price">
+                        <div className="cart_grid-group">
+                          <div className="cart_quantity">
                             <span>Qty</span>
                             <span>
-                              <select className="qty-dropdown" value={item.qty} onChange={(e) => props.changeQty(ind, parseInt(e.target.value))}>
+                              <select className="cart_qty-dropdown" value={item.qty} onChange={(e) => props.changeQty(ind, parseInt(e.target.value))}>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -82,7 +82,7 @@ const CartItems = props => {
                                 <option value="10">10</option>
                               </select>
                             </span>
-                            <div className="shipping">
+                            <div className="cart_shipping">
                               Standard
                               <br />
                               Shipping
@@ -90,27 +90,27 @@ const CartItems = props => {
                               3-5 days
                             </div>
                           </div>
-                          <div className="item-price">
+                          <div className="cart_item-price">
                             ${(item.price * item.qty).toFixed(2)}
-                            <div className="shipping shipping-price">
+                            <div className="cart_shipping cart_shipping-price">
                               Free Shipping
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="item-footer">
+                    <div className="cart_item-footer">
                       <div >
                         <span>
-                          <button type="button" className="faux-link">
+                          <button type="button" className="cart_button cart_faux-link">
                             <span>Save for later</span>
                           </button>
                         </span>
-                        <div className="line-y">|</div>
+                        <div className="cart_line-y">|</div>
                         <span>
                           <button
                             type="button"
-                            className="faux-link"
+                            className="cart_button cart_faux-link"
                             onClick={() => props.changeQty(ind, 0)}
                           >
                             <span>
