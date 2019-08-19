@@ -6,12 +6,12 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-3-16-22-38.us-east-2.compute.amazonaws.com',
+      host: 'ec2-52-14-236-144.us-east-2.compute.amazonaws.com',
       key: '~/.ssh/Zbay.pem',
-      ref: 'origin/master',
+      ref: 'origin/Frontend',
       repo: 'https://github.com/zbay-fec/Cart.git',
       path: '/home/ubuntu/Zbay',
-      'post-deploy': 'npm install && git pull && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }
