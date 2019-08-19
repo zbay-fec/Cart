@@ -10,7 +10,7 @@ const host = process.env.HOST || '0.0.0.0'
 // need for mongo to find env
 require('dotenv').config()
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@zbaycart-tvfyb.mongodb.net/ZbayCart?retryWrites=true&w=majority`, { useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0-tvfyb.mongodb.net/ZbayCart?retryWrites=true&w=majority`, { useNewUrlParser: true });
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
