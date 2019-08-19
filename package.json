@@ -8,6 +8,8 @@
     "dev_server": "nodemon -r dotenv/config server/server.js",
     "start": "webpack -d --watch & live-server --port=3099 --watch=dist",
     "start-oh": "webpack -d --watch",
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "build": "webpack --mode production"
   },
   "repository": {
