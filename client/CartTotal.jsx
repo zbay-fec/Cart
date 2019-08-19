@@ -8,7 +8,7 @@ const CartTotal = props => {
       >
         <div>
           <button
-            className="cart_button" 
+            className="cart_button"
             id="cart_checkout"
             type="button"
           >

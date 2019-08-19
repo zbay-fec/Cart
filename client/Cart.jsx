@@ -13,8 +13,22 @@ export default class Cart extends React.Component {
       cartQty: 0,
       cartTotal: 0,
       //sample cart data for testing
-      cart: []
+      cart: [
+            // Sample item for testing
+            // { _id: "DQS532z",
+            //   name: '3 Pc "8" Zombie Killer Ninja Kunai Tactical Throwing Knife Set w/ She...', 
+            //   price: "12.4", 
+            //   image1: "https://zbay-fec-hratx-42.s3.us-east-2.amazonaws.com/knives/ZombieKillerNinja/s-l1600.jpg",
+            //   seller: "hfisbburne0",
+            //   condition: "Good",
+            //   category: "Knives",
+            //   url: "https://www.ebay.com/itm/3-Pc-8-Zombie-Killer-Ninja-Kunai-Tactical-Thr...",
+            //   qty: 4 }
+            ]
     }
+
+
+
 
     this.getItem = this.getItem.bind(this)
     this.addToCart = this.addToCart.bind(this)
@@ -99,7 +113,8 @@ export default class Cart extends React.Component {
   }
 
   getItem(id, cb) {
-    axios.get(`http://ec2-3-16-22-38.us-east-2.compute.amazonaws.com:3099/item:?id=${id}`)
+    // axios.get(`http://localhost:3099/item:?id=${id}`)
+    axios.get(`http://ec2-52-14-236-144.us-east-2.compute.amazonaws.com:3099/item:?id=${id}`)
     .then(data => {
       cb(null, data.data) 
       // this.setState({ testItem: data.data });
@@ -131,8 +146,10 @@ export default class Cart extends React.Component {
     //   qty: 4
     // }}
 
-    // new Promise((resolve, reject) => {
+    // console.log('component did mount')
+    // let promiseTest = new Promise((resolve, reject) => {
     //   this.getItem(event.detail.id, (error, result) => {
+    //     console.log('get item ', event.detail.qty)
     //     if (error) {
     //       reject(error)
     //     } else {
@@ -145,6 +162,11 @@ export default class Cart extends React.Component {
     //   this.addToCart(item)
     // })
     // .catch(err => console.log('get error: ', err))
+
+    // promiseTest.then((item) => {
+    //   item.qty = parseInt(event.detail.qty)
+    //   this.addToCart(item)
+    // })
   }
 
   render() {
